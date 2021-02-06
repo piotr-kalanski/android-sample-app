@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Event implements Serializable {
     private final String id;
     private final String time; // TODO - change type
-    private final String description;
+    private final String title;
 
     public Event(String id, String time, String description) {
         this.id = id;
         this.time = time;
-        this.description = description;
+        this.title = description;
     }
 
     public String getId() {
@@ -21,7 +21,7 @@ public class Event implements Serializable {
         return time;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 }
