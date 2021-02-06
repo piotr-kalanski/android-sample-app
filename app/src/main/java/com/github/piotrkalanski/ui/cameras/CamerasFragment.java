@@ -34,7 +34,7 @@ public class CamerasFragment extends Fragment {
             this.viewModel.cameras.observe(getViewLifecycleOwner(), getCamerasResponse -> {
                 RecyclerView recyclerView = (RecyclerView) view;
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                recyclerView.setAdapter(new MyCameraRecyclerViewAdapter(getCamerasResponse.items));
+                recyclerView.setAdapter(new MyCameraRecyclerViewAdapter(getActivity(), getCamerasResponse.items));
             });
         }
         return view;

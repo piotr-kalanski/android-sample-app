@@ -1,8 +1,10 @@
 package com.github.piotrkalanski.ui.cameras;
 
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.github.piotrkalanski.R;
 import com.github.piotrkalanski.model.Camera;
+import com.github.piotrkalanski.ui.camera.CameraActivity;
 
 import java.util.List;
 
@@ -22,9 +25,11 @@ import java.util.List;
 public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRecyclerViewAdapter.ViewHolder> {
 
     private final List<Camera> mValues;
+    private final FragmentActivity activity;
 
-    public MyCameraRecyclerViewAdapter(List<Camera> items) {
+    public MyCameraRecyclerViewAdapter(FragmentActivity activity, List<Camera> items) {
         mValues = items;
+        this.activity = activity;
     }
 
     @Override
@@ -38,20 +43,17 @@ public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Camera item = mValues.get(position);
 
-        Drawable drawable = ContextCompat.getDrawable(holder.cardView.getContext(), getDrawableForModel(item.getModel()));
+        Drawable drawable = ContextCompat.getDrawable(holder.cardView.getContext(), item.getDrawable());
         holder.imageView.setImageDrawable(drawable);
         holder.imageView.setContentDescription(item.getModel());
 
         holder.description.setText(item.getDescription());
-    }
 
-    private int getDrawableForModel(String modelId) {
-        switch(modelId) {
-            case "model1": return R.drawable.model1;
-            case "model2": return R.drawable.model2;
-            case "model3": return R.drawable.model3;
-            default: return R.drawable.ic_menu_camera;
-        }
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, CameraActivity.class);
+            intent.putExtra(CameraActivity.KEY_CAMERA, item);
+            activity.startActivity(intent);
+        });
     }
 
     @Override

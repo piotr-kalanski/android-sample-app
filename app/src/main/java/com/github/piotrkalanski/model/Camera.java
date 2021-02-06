@@ -1,6 +1,10 @@
 package com.github.piotrkalanski.model;
 
-public class Camera {
+import com.github.piotrkalanski.R;
+
+import java.io.Serializable;
+
+public class Camera implements Serializable {
     private final String id;
     private final String model;
     private final String description;
@@ -9,6 +13,15 @@ public class Camera {
         this.id = id;
         this.model = modelId;
         this.description = description;
+    }
+
+    public int getDrawable() {
+        switch(model) {
+            case "model1": return R.drawable.model1;
+            case "model2": return R.drawable.model2;
+            case "model3": return R.drawable.model3;
+            default: return R.drawable.ic_menu_camera;
+        }
     }
 
     public String getId() {
