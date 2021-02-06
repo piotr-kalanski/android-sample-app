@@ -38,9 +38,9 @@ public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Camera item = mValues.get(position);
 
-        Drawable drawable = ContextCompat.getDrawable(holder.cardView.getContext(), getDrawableForModel(item.getModelId()));
+        Drawable drawable = ContextCompat.getDrawable(holder.cardView.getContext(), getDrawableForModel(item.getModel()));
         holder.imageView.setImageDrawable(drawable);
-        holder.imageView.setContentDescription(item.getModelId());
+        holder.imageView.setContentDescription(item.getModel());
 
         holder.description.setText(item.getDescription());
     }
@@ -67,8 +67,8 @@ public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRe
         public ViewHolder(View view) {
             super(view);
             cardView = view;
-            imageView = (ImageView) view.findViewById(R.id.image);
-            description = (TextView) view.findViewById(R.id.description);
+            imageView = view.findViewById(R.id.image);
+            description = view.findViewById(R.id.description);
         }
     }
 }

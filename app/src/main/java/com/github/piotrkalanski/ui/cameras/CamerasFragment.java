@@ -12,9 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.piotrkalanski.R;
-import com.github.piotrkalanski.ui.cameras.dummy.DummyContent;
 
 public class CamerasFragment extends Fragment {
+
+    private CamerasViewModel viewModel;
+
+    public CamerasFragment() {
+        // TODO - support for multiple users
+        // TODO - new ViewModelProvider(this).get(CamerasViewModel.class) ?
+        this.viewModel = new CamerasViewModel("u1");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,10 +30,12 @@ public class CamerasFragment extends Fragment {
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            // TODO - fetch from REST API
-            recyclerView.setAdapter(new MyCameraRecyclerViewAdapter(DummyContent.ITEMS));
+
+            this.viewModel.cameras.observe(getViewLifecycleOwner(), getCamerasResponse -> {
+                RecyclerView recyclerView = (RecyclerView) view;
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(new MyCameraRecyclerViewAdapter(getCamerasResponse.items));
+            });
         }
         return view;
     }
