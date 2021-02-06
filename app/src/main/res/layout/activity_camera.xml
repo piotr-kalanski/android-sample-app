@@ -8,9 +8,34 @@
 
     <ImageView
         android:id="@+id/image"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1.0"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
-        <!-- TODO - actions -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/showRealTime"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:onClick="onRealTimeClicked"
+            android:text="@string/realTime" />
+
+        <Button
+            android:id="@+id/showPlayback"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:onClick="onPlaybackClicked"
+            android:text="@string/playback" />
+    </LinearLayout>
 </LinearLayout>
