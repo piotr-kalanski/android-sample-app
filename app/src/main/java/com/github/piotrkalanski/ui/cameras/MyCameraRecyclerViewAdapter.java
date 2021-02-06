@@ -1,10 +1,13 @@
 package com.github.piotrkalanski.ui.cameras;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.piotrkalanski.R;
@@ -33,9 +36,22 @@ public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getId());
-        holder.mContentView.setText(mValues.get(position).getDescription());
+        Camera item = mValues.get(position);
+
+        Drawable drawable = ContextCompat.getDrawable(holder.cardView.getContext(), getDrawableForModel(item.getModelId()));
+        holder.imageView.setImageDrawable(drawable);
+        holder.imageView.setContentDescription(item.getModelId());
+
+        holder.description.setText(item.getDescription());
+    }
+
+    private int getDrawableForModel(String modelId) {
+        switch(modelId) {
+            case "model1": return R.drawable.model1;
+            case "model2": return R.drawable.model2;
+            case "model3": return R.drawable.model3;
+            default: return R.drawable.ic_menu_camera;
+        }
     }
 
     @Override
@@ -44,21 +60,15 @@ public class MyCameraRecyclerViewAdapter extends RecyclerView.Adapter<MyCameraRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public Camera mItem;
+        public final View cardView;
+        public final ImageView imageView;
+        public final TextView description;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            cardView = view;
+            imageView = (ImageView) view.findViewById(R.id.image);
+            description = (TextView) view.findViewById(R.id.description);
         }
     }
 }
