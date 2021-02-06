@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cameras)
+                R.id.nav_home, R.id.nav_cameras) // TODO - events fragment
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
     }
 
     @Override
@@ -60,4 +62,21 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    // TODO - support move to settings, logout, ...
+//    private boolean onNavigationItemSelected(MenuItem item) {
+//        Class destinationActivity;
+//        drawer.close();
+//        switch(item.getItemId()) {
+//            case R.id.nav_settings:
+//                destinationActivity = SettingsActivity.class;
+//                break;
+//                // TODO - other navigation actions
+//            default:
+//                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//                return NavigationUI.onNavDestinationSelected(item, navController);
+//        }
+//        startActivity(new Intent(this, destinationActivity));
+//        return true;
+//    }
 }

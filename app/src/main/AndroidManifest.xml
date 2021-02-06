@@ -13,12 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSampleApplication">
         <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".ui.playback.PlaybackConfigurationActivity"
-            android:label="@string/playback"/>
+            android:label="@string/playback" />
         <activity
             android:name=".ui.realtime.RealTimeActivity"
-            android:label="@string/realTime"
-        />
+            android:label="@string/realTime" />
         <activity
             android:name=".ui.camera.CameraActivity"
             android:parentActivityName=".MainActivity" />
