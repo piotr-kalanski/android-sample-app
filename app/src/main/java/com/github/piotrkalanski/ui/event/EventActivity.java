@@ -2,6 +2,7 @@ package com.github.piotrkalanski.ui.event;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,8 @@ public class EventActivity extends AppCompatActivity {
     }
 
     public void onPlayClicked(View view) {
-        // TODO - move to event play activity
+        Intent intent = new Intent(this, EventPlaybackActivity.class);
+        intent.putExtra(EventActivity.KEY_EVENT, event);
+        startActivity(intent);
     }
 }

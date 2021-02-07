@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.piotrkalanski"
-        minSdkVersion 18
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -52,10 +52,10 @@ dependencies {
     // to display image from URL
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    // TODO - exoplayer
-    /*
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.X.X'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.X.X'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.X.X'
-    */
+    // DASH and HLS player:
+    def exoplayer_version = '2.12.3'
+    implementation ("com.google.android.exoplayer:exoplayer-core:$exoplayer_version")
+    implementation ("com.google.android.exoplayer:exoplayer-ui:$exoplayer_version")
+    implementation ("com.google.android.exoplayer:exoplayer-dash:$exoplayer_version")
+    implementation ("com.google.android.exoplayer:exoplayer-hls:$exoplayer_version")
 }

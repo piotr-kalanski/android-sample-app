@@ -3,6 +3,10 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // for exoplayer:
+        maven {
+            url "https://dl.bintray.com/google/exoplayer/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
