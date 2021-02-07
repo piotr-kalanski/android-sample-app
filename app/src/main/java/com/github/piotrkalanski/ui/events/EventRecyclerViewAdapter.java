@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.piotrkalanski.R;
 import com.github.piotrkalanski.model.Event;
 import com.github.piotrkalanski.ui.event.EventActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
+        Picasso.get().load(item.getUrl()).into(holder.imageView);
 
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(activity, EventActivity.class);
@@ -59,12 +62,14 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         public final View cardView;
         public final TextView title;
         public final TextView time;
+        public final ImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
             cardView = view;
             title = view.findViewById(R.id.title);
             time = view.findViewById(R.id.time);
+            imageView = view.findViewById(R.id.image);
         }
     }
 }

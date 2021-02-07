@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.piotrkalanski.R;
 import com.github.piotrkalanski.model.Event;
+import com.squareup.picasso.Picasso;
 
 public class EventActivity extends AppCompatActivity {
     public static final String KEY_EVENT = "EVENT";
@@ -24,7 +26,7 @@ public class EventActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.title)).setText(event.getTitle());
         ((TextView)findViewById(R.id.time)).setText(event.getTime());
 
-        // TODO - image
+        Picasso.get().load(event.getUrl()).into((ImageView)findViewById(R.id.image));
     }
 
     public void onPlayClicked(View view) {
