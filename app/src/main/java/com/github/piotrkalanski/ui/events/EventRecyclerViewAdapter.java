@@ -3,6 +3,7 @@ package com.github.piotrkalanski.ui.events;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.github.piotrkalanski.R;
 import com.github.piotrkalanski.model.Event;
+import com.github.piotrkalanski.ui.event.EventActivity;
 
 import java.util.List;
 
@@ -38,14 +40,14 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Event item = mValues.get(position);
 
-        holder.description.setText(item.getTitle());
+        holder.title.setText(item.getTitle());
+        holder.time.setText(item.getTime());
 
-        // TODO - go to event details
-//        holder.cardView.setOnClickListener(v -> {
-//            Intent intent = new Intent(activity, EventActivity.class);
-//            intent.putExtra(EventActivity.KEY_Event, item);
-//            activity.startActivity(intent);
-//        });
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, EventActivity.class);
+            intent.putExtra(EventActivity.KEY_EVENT, item);
+            activity.startActivity(intent);
+        });
     }
 
     @Override
@@ -55,12 +57,14 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View cardView;
-        public final TextView description;
+        public final TextView title;
+        public final TextView time;
 
         public ViewHolder(View view) {
             super(view);
             cardView = view;
-            description = view.findViewById(R.id.description);
+            title = view.findViewById(R.id.title);
+            time = view.findViewById(R.id.time);
         }
     }
 }

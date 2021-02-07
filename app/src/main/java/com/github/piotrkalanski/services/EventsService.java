@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 
 public interface EventsService {
     // TODO - replace by target endpoint, currently it is mock api: https://jsonplaceholder.typicode.com/posts?userId=2
-    @GET("posts")
-    Call<List<Event>> getEvents(@Query("userId") String userId);
+    @GET("photos")
+    Call<List<Event>> getEvents(@Query("albumId") String userId);
 }

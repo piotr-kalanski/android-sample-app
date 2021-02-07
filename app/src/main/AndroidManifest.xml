@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSampleApplication">
         <activity
+            android:name=".ui.event.EventActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/event"/>
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity" />

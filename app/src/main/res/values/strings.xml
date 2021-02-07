@@ -30,4 +30,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="menu_events">Events</string>
+    <string name="play">Play</string>
+    <string name="event">Event</string>
 </resources>
